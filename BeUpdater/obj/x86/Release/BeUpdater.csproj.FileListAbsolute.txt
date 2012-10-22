@@ -1,0 +1,7 @@
+D:\Src\SandBox\BeUpdater\BeUpdater\bin\Release\BeUpdater.exe
+D:\Src\SandBox\BeUpdater\BeUpdater\bin\Release\BeUpdater.pdb
+D:\Src\SandBox\BeUpdater\BeUpdater\obj\x86\Release\BeUpdater.Form1.resources
+D:\Src\SandBox\BeUpdater\BeUpdater\obj\x86\Release\BeUpdater.Properties.Resources.resources
+D:\Src\SandBox\BeUpdater\BeUpdater\obj\x86\Release\BeUpdater.csproj.GenerateResource.Cache
+D:\Src\SandBox\BeUpdater\BeUpdater\obj\x86\Release\BeUpdater.exe
+D:\Src\SandBox\BeUpdater\BeUpdater\obj\x86\Release\BeUpdater.pdb
