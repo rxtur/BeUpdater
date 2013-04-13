@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.ComponentModel;
 
 namespace BeUpdater
 {
@@ -10,23 +11,24 @@ namespace BeUpdater
         public static string Old { get; set; }
         public static string New { get; set; }
 
-        public static string Run()
+        public static void Run(int step)
         {
-            try
+            switch (step)
             {
-                MergeAppData();
-
-                MergeCommon();
-
-                CopyCustom();
-
-                FixCompatibility();
-
-                return "Upgrade completed";
-            }
-            catch (Exception ex)
-            {
-                return ex.Message;
+                case 1:
+                    CopyCustom();
+                    break;
+                case 2:
+                    MergeCommon();
+                    break;
+                case 3:
+                    MergeAppData();
+                    break;
+                case 4:
+                    FixCompatibility();
+                    break;
+                default:
+                    break;
             }
         }
 
@@ -63,18 +65,45 @@ namespace BeUpdater
 
             // copy custom scripts
             var oldScripts = new DirectoryInfo(Path.Combine(Old, "Scripts"));
+            var oldHdrScripts = new DirectoryInfo(Path.Combine(Old, "Scripts", "Header"));
             var newScripts = Path.Combine(New, "Scripts");
+
+            // don't copy these files
+            var deprecated = new List<string> { "01-jquery.js", "02-jquery.cookie.js", "04-jquery-jtemplates.js", "05-json2.js" };
+            var newFile = "";
+
+            // in BE 2.7 scripts from /scripts and /scripts/header 
+            // auto-loaded; in BE 2.8 all auto-loaded scripts
+            // moved to /Scripts/Auto directory
+            foreach (var f in oldHdrScripts.GetFiles())
+            {
+                newFile = Path.Combine(newScripts, "Auto", f.Name);
+                if (!File.Exists(newFile) && !deprecated.Contains(f.Name))
+                {
+                    File.Copy(f.FullName, newFile);
+                }
+            }
             foreach (var f in oldScripts.GetFiles())
             {
-                if (!File.Exists(Path.Combine(newScripts, f.Name)))
+                newFile = Path.Combine(newScripts, "Auto", f.Name);
+                if (!File.Exists(newFile) && !deprecated.Contains(f.Name))
                 {
-                    File.Copy(f.FullName, Path.Combine(newScripts, f.Name));
+                    File.Copy(f.FullName, newFile);
+                }
+            }
+            foreach (var d in oldScripts.GetDirectories())
+            {
+                var newDir = Path.Combine(New, "Scripts", d.Name);
+                if (!d.Name.Contains("Header") && !Directory.Exists(newDir))
+                {
+                    FileSystem.CopyFromTo(d.FullName, newDir);
                 }
             }
 
-            // copy custom styles
+            // copy custom styles : css files go to "Auto" 
+            // for auto-execution and direcrories copied as is
             var oldStyles = new DirectoryInfo(Path.Combine(Old, "Styles"));
-            var newStyles = Path.Combine(New, "Styles");
+            var newStyles = Path.Combine(New, "Content", "Auto");
             foreach (var f in oldStyles.GetFiles())
             {
                 if (!File.Exists(Path.Combine(newStyles, f.Name)))
@@ -82,18 +111,22 @@ namespace BeUpdater
                     File.Copy(f.FullName, Path.Combine(newStyles, f.Name));
                 }
             }
-
-            // remove scripts added by default in 2.0.x.x
-            string[] srcs = { "blog.js", "jquery.cookie.js", "jquery.js", "jquery.validate.min.js", "jquery-1.4.3-vsdoc.js", "jquery-jtemplates.js", "json2.js" };
-
-            foreach (var src in srcs)
+            foreach (var d in oldStyles.GetDirectories())
             {
-                string srcPath = Path.Combine(New, @"Scripts\" + src);
-                if (File.Exists(srcPath))
-                {
-                    File.Delete(srcPath);
-                }
+                FileSystem.CopyFromTo(d.FullName, Path.Combine(New, "Content"));
             }
+
+            //// remove scripts added by default in 2.0.x.x
+            //string[] srcs = { "blog.js", "jquery.cookie.js", "jquery.js", "jquery.validate.min.js", "jquery-1.4.3-vsdoc.js", "jquery-jtemplates.js", "json2.js" };
+
+            //foreach (var src in srcs)
+            //{
+            //    string srcPath = Path.Combine(New, @"Scripts\" + src);
+            //    if (File.Exists(srcPath))
+            //    {
+            //        File.Delete(srcPath);
+            //    }
+            //}
         }
 
         static void CopyCustom()
@@ -109,7 +142,11 @@ namespace BeUpdater
             {
                 if (!Directory.Exists(Path.Combine(New, d.Name)))
                 {
-                    FileSystem.CopyFromTo(d.FullName, Path.Combine(New, d.Name));
+                    // in 2.8 styles go to "Content", don't copy
+                    if (d.Name.ToLower() != "styles")
+                    {
+                        FileSystem.CopyFromTo(d.FullName, Path.Combine(New, d.Name));
+                    }
                 }
             }
 

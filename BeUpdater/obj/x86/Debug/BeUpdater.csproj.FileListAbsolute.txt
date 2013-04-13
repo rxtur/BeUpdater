@@ -5,3 +5,13 @@ D:\Src\SandBox\BeUpdater\BeUpdater\obj\x86\Debug\BeUpdater.Properties.Resources.
 D:\Src\SandBox\BeUpdater\BeUpdater\obj\x86\Debug\BeUpdater.csproj.GenerateResource.Cache
 D:\Src\SandBox\BeUpdater\BeUpdater\obj\x86\Debug\BeUpdater.exe
 D:\Src\SandBox\BeUpdater\BeUpdater\obj\x86\Debug\BeUpdater.pdb
+C:\Users\ruslan.tur\SkyDrive\Dev\Src\GitHub\BeUpdater\BeUpdater\obj\x86\Debug\BeUpdater.exe
+C:\Users\ruslan.tur\SkyDrive\Dev\Src\GitHub\BeUpdater\BeUpdater\obj\x86\Debug\BeUpdater.pdb
+C:\Users\Ruslan\SkyDrive\Dev\Src\GitHub\BeUpdater\BeUpdater\obj\x86\Debug\BeUpdater.exe
+C:\Users\Ruslan\SkyDrive\Dev\Src\GitHub\BeUpdater\BeUpdater\obj\x86\Debug\BeUpdater.pdb
+C:\Users\Ruslan\SkyDrive\Dev\Src\GitHub\BeUpdater\BeUpdater\bin\Debug\BeUpdater.exe
+C:\Users\Ruslan\SkyDrive\Dev\Src\GitHub\BeUpdater\BeUpdater\bin\Debug\BeUpdater.pdb
+C:\Users\Ruslan\SkyDrive\Dev\Src\GitHub\BeUpdater\BeUpdater\obj\x86\Debug\BeUpdater.csprojResolveAssemblyReference.cache
+C:\Users\Ruslan\SkyDrive\Dev\Src\GitHub\BeUpdater\BeUpdater\obj\x86\Debug\BeUpdater.Form1.resources
+C:\Users\Ruslan\SkyDrive\Dev\Src\GitHub\BeUpdater\BeUpdater\obj\x86\Debug\BeUpdater.Properties.Resources.resources
+C:\Users\Ruslan\SkyDrive\Dev\Src\GitHub\BeUpdater\BeUpdater\obj\x86\Debug\BeUpdater.csproj.GenerateResource.Cache

@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace BeUpdater
@@ -33,7 +28,36 @@ namespace BeUpdater
             Upgrade.Old = folderBrowserDialogOld.SelectedPath;
             Upgrade.New = folderBrowserDialogNew.SelectedPath;
 
-            MessageBox.Show(Upgrade.Run());
+            backgroundWorker1.WorkerReportsProgress = true;
+            backgroundWorker1.RunWorkerAsync();
+        }
+
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+            try
+            {
+                for (int i = 1; i < 5; i++)
+                {
+                    Upgrade.Run(i);
+                    backgroundWorker1.ReportProgress(i * 25);
+                }
+                MessageBox.Show("All done!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            progressBar1.Value = e.ProgressPercentage;
+        }
+
+        private void ShowMsg(string msg)
+        {
+            MessageBox.Show(msg);
+            backgroundWorker1.ReportProgress(1);
         }
     }
 }

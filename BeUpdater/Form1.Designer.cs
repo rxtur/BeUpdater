@@ -36,6 +36,8 @@
             this.btnUpgrade = new System.Windows.Forms.Button();
             this.lblFrom = new System.Windows.Forms.Label();
             this.lblTo = new System.Windows.Forms.Label();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.SuspendLayout();
             // 
             // label1
@@ -101,11 +103,24 @@
             this.lblTo.TabIndex = 5;
             this.lblTo.Text = "Select directory with latest BlogEngine.NET files  ->";
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(34, 176);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(280, 23);
+            this.progressBar1.TabIndex = 6;
+            // 
+            // backgroundWorker1
+            // 
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(665, 215);
+            this.ClientSize = new System.Drawing.Size(665, 227);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.lblTo);
             this.Controls.Add(this.lblFrom);
             this.Controls.Add(this.btnUpgrade);
@@ -129,6 +144,8 @@
         private System.Windows.Forms.Button btnUpgrade;
         private System.Windows.Forms.Label lblFrom;
         private System.Windows.Forms.Label lblTo;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
 
