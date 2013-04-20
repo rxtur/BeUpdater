@@ -12,3 +12,4 @@ C:\Users\Ruslan\SkyDrive\Dev\Src\GitHub\BeUpdater\BeUpdater\bin\Release\BeUpdate
 C:\Users\Ruslan\SkyDrive\Dev\Src\GitHub\BeUpdater\BeUpdater\obj\x86\Release\BeUpdater.Form1.resources
 C:\Users\Ruslan\SkyDrive\Dev\Src\GitHub\BeUpdater\BeUpdater\obj\x86\Release\BeUpdater.Properties.Resources.resources
 C:\Users\Ruslan\SkyDrive\Dev\Src\GitHub\BeUpdater\BeUpdater\obj\x86\Release\BeUpdater.csproj.GenerateResource.Cache
+C:\Users\Ruslan\SkyDrive\Dev\Src\GitHub\BeUpdater\BeUpdater\obj\x86\Release\BeUpdater.csprojResolveAssemblyReference.cache

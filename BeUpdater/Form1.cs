@@ -9,6 +9,7 @@ namespace BeUpdater
         public Form1()
         {
             InitializeComponent();
+            progressBar1.Visible = false;
         }
 
         private void btnOld_Click(object sender, EventArgs e)
@@ -27,6 +28,8 @@ namespace BeUpdater
         {
             Upgrade.Old = folderBrowserDialogOld.SelectedPath;
             Upgrade.New = folderBrowserDialogNew.SelectedPath;
+
+            progressBar1.Visible = true;
 
             backgroundWorker1.WorkerReportsProgress = true;
             backgroundWorker1.RunWorkerAsync();
